@@ -1,7 +1,3 @@
-"""Predict using estimator.predict"""
-
-__author__ = "Guillaume Genthial"
-
 
 import functools
 from pathlib import Path
@@ -14,7 +10,7 @@ import tensorflow as tf
 from model import model_fn
 
 
-class FastPredict:
+class FastPredict(object):
 
     def __init__(self, estimator, input_fn):
         self.estimator = estimator
@@ -65,15 +61,11 @@ def example_input_fn(generator):
 
     return _inner_input_fn
 
-
-
-
 def my_service():
     """Some service yielding numbers"""
-    start, end = 100, 110
+    start, end = 1, 10000
     for number in range(start, end):
-        yield number, number
-
+        yield number
 
 if __name__ == '__main__':
     # Logging
@@ -97,7 +89,7 @@ if __name__ == '__main__':
     tic = time.time()
     for nb in my_service():
 
-        pred = predictor.predict([nb,nb])
+        pred = predictor.predict([nb, nb])
         pred = pred[0]
         '''
         example_inpf = functools.partial(example_input_fn, nb)

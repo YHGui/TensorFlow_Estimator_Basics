@@ -26,7 +26,7 @@ def example_input_fn(number):
 
 def my_service():
     """Some service yielding numbers"""
-    start, end = 100, 110
+    start, end = 1, 10000
     for number in range(start, end):
         yield number
 
