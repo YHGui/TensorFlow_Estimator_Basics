@@ -2,7 +2,7 @@
 
 Train, predict, export and reload a `tf.estimator` for inference on a dummy example. This repository is forked and modified based on Guillaume Genthial's [repository](https://github.com/guillaumegenthial/tf-estimator-basics)
 
-Please read the Guillaume Genthial's original [blog post](https://guillaumegenthial.github.io/serving-tensorflow-estimator.html) and my [blog post]().
+Please read the Guillaume Genthial's original [blog post](https://guillaumegenthial.github.io/serving-tensorflow-estimator.html) and my [blog post](https://leimao.github.io/blog/TensorFlow-Estimator-SavedModel/).
 
 ## Dependencies
 
