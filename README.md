@@ -1,16 +1,18 @@
 # Tensorflow Estimator Basics
 
-Train, predict, export and reload a `tf.estimator` for inference on a dummy example. 
+Train, predict, export and reload a `tf.estimator` for inference on a dummy example. This repository is forked and modified based on Guillaume Genthial's [repository](https://github.com/guillaumegenthial/tf-estimator-basics)
 
-[Read the blog post](https://guillaumegenthial.github.io/serving-tensorflow-estimator.html)
+Please read the Guillaume Genthial's original [blog post](https://guillaumegenthial.github.io/serving-tensorflow-estimator.html) and my [blog post]().
 
+## Dependencies
 
-
+* TensorFlow 1.14
+* Python 3.6
 
 ## Quickstart
 
 ```
-make run
+bash run.sh
 ```
 
 ## Details
@@ -19,4 +21,6 @@ make run
 - `train.py` trains an Estimator using the `model_fn`
 - `export.py` exports the Estimator as a `saved_model`
 - `predict.py` reloads an Estimator and uses it for prediction
+- `fast_redict.py` reloads an Estimator and uses it for prediction using Marc Stogaitis's implementation.
+- `faster_redict.py` reloads an Estimator and uses it for prediction using Lei Mao's implementation.
 - `serve.py` reloads the inference graph from the `saved_model` format and uses it for prediction
