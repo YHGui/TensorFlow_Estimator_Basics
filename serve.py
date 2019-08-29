@@ -21,6 +21,8 @@ if __name__ == '__main__':
                if x.is_dir() and 'temp' not in str(x)]
     latest = str(sorted(subdirs)[-1])
     predict_fn = predictor.from_saved_model(latest)
+    # It also supports multiple examples
+    pred = predict_fn({'number': [[1],[1]]})['output']
     count = 0
     tic = time.time()
     for nb in my_service():
