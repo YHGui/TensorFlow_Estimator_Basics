@@ -63,7 +63,7 @@ def example_input_fn(generator):
 
 def my_service():
     """Some service yielding numbers"""
-    start, end = 1, 10000
+    start, end = 1, 100
     for number in range(start, end):
         yield number
 
@@ -86,17 +86,14 @@ if __name__ == '__main__':
     predictor.predict([1,1])
 
     # Predict using the estimator
+    count = 0
     tic = time.time()
     for nb in my_service():
-
+        count += 1
         pred = predictor.predict([nb, nb])
         pred = pred[0]
-        '''
-        example_inpf = functools.partial(example_input_fn, nb)
-        for pred in estimator.predict(example_inpf):
-            # print((pred - 2*nb)**2)
-            pass
-        '''
+
+        # print((pred - 2*nb)**2)
 
     toc = time.time()
-    print('Average time in predict.py: {}s'.format((toc - tic) / 10))
+    print('Average time in predict.py: {}s'.format((toc - tic) / count))

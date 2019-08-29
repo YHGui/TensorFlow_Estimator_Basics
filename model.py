@@ -11,8 +11,11 @@ def model_fn(features, labels, mode, params):
     """Dummy model_fn"""
     if isinstance(features, dict):  # For serving
         features = features['feature']
+    
+    hidden = tf.layers.dense(features, 4)
+    predictions = tf.layers.dense(hidden, 1)
 
-    predictions = tf.layers.dense(features, 1)
+    # predictions = tf.layers.dense(features, 1)
 
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode, predictions=predictions)

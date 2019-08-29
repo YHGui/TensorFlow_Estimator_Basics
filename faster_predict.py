@@ -28,7 +28,7 @@ def example_input_fn(generator):
 
 def my_service():
     """Some service yielding numbers"""
-    start, end = 1, 10000
+    start, end = 1, 100
     for number in range(start, end):
         yield number
 
@@ -79,19 +79,19 @@ if __name__ == '__main__':
     
     server = TFEstimatorServe(estimator=estimator, input_fn=example_input_fn)
 
-    server.predict(data=[[1,1]])
+    # It allows multiple examples as input
+    server.predict(data=[[1,1],[2,2]])
 
     # Predict using the estimator
+    count = 0
     tic = time.time()
     for nb in my_service():
+        count += 1
         pred = server.predict(data=[[nb, nb]])
         pred = pred[0]
 
-        #print("------------------")
-        #print((pred - 2*nb)**2)
-        #print("------------------")
-        
+        # print((pred - 2*nb)**2)
 
     toc = time.time()
-    print('Average time in predict.py: {}s'.format((toc - tic) / 10))
+    print('Average time in predict.py: {}s'.format((toc - tic) / count))
 

@@ -10,7 +10,7 @@ from tensorflow.contrib import predictor
 
 def my_service():
     """Some service yielding numbers"""
-    start, end = 100, 110
+    start, end = 1, 100
     for number in range(start, end):
         yield number
 
@@ -21,9 +21,11 @@ if __name__ == '__main__':
                if x.is_dir() and 'temp' not in str(x)]
     latest = str(sorted(subdirs)[-1])
     predict_fn = predictor.from_saved_model(latest)
+    count = 0
     tic = time.time()
     for nb in my_service():
+        count += 1
         pred = predict_fn({'number': [[nb]]})['output']
         # print((pred - 2*nb)**2)
     toc = time.time()
-    print('Average time in serve.py: {}s'.format((toc - tic) / 10))
+    print('Average time in serve.py: {}s'.format((toc - tic) / count))
